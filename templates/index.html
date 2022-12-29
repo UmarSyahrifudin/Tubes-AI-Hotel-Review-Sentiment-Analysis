@@ -1,0 +1,132 @@
+
+<html>
+  <head>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+    <style>
+      .centered {
+        position: relative;
+        text-align: center;
+        display: grid;
+        place-items: center;
+        color: white;
+      }
+
+      .header {
+        color: black;
+      }
+
+      p {
+        color: #111;
+        font-family: 'Helvetica Neue', sans-serif;
+        font-size: 14px;
+        line-height: 24px;
+        margin: 0 0 24px;
+        text-justify: inter-word;
+      }
+
+      h1 {
+        color: #111;
+        font-family: 'Helvetica Neue', sans-serif;
+        font-size: 36px;
+        font-weight: bold;
+        letter-spacing: -1px;
+        line-height: 1;
+        text-align: center;
+      }
+
+      h3 {
+        color: #111;
+        font-family: 'Times New Roman', sans-serif;
+        font-size: 30px;
+        font-weight: bold;
+        letter-spacing: -1px;
+        line-height: 1;
+        text-align: center;
+      }
+
+      #demo {
+        color: #111;
+        font-family: 'Helvetica Neue', sans-serif;
+        font-size: 22px;
+        line-height: 24px;
+        margin: 0 0 24px;
+        text-justify: inter-word;
+      }
+
+      .form-div {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+      }
+      #button {
+        border: none;
+        background: #404040;
+        color: #ffffff !important;
+        font-weight: 100;
+        padding: 20px;
+        text-transform: uppercase;
+        border-radius: 6px;
+        display: inline-block;
+        transition: all 0.3s ease 0s;
+        float: center;
+        margin-top: 2em;
+      }
+
+      #button:hover {
+        color: #404040 !important;
+        font-weight: 700 !important;
+        letter-spacing: 3px;
+        background: none;
+        -webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+        -moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+        transition: all 0.3s ease 0s;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container mt-5">
+      <div class="centered">
+        <div class="text-center text-white">
+          <title>Sentiment Analysis</title>
+        </div>
+        <h1 class="header">Hotel Review Sentiment Analysis</h1>
+
+        <p class="desc">
+          Silahkan Masukkan Review (Dalam Bahasa Inggris)
+        </p>
+
+        <form action="{{ url_for('getprediction')}}"method="post" class="form">
+          <div class="form-div">
+<!--             <input type="text" name="review" id="review" placeholder="review" required="required" class="form-control mr-2" /> -->
+          <textarea name="review" id="review" placeholder="review" required="required" class="form-control mr-2" rows="9" cols="90">
+            
+          </textarea>
+          <br>
+          <br>
+          </div>
+            <button id="button" type="submit">
+              Analysis
+            </button>
+        </form>
+        <br />
+        <br />
+
+        <h3>Review :</h3>
+        <p id="demo">{{ review }}</p>
+
+        <h3>Analysis :</h3>
+        <p id="demo">{{ output }}</p>
+      </div>
+    </div>
+  </body>
+</html>

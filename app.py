@@ -11,10 +11,6 @@ input_review = st.text_area(label="Masukkan Review (Dalam bahasa Inggris):",
 analisis_button = st.button(label="Analyze")
 
 
-if analisis_button:
-    hasil_analisis = model.predict(input_review)
-    if hasil_analisis == "Is_Response":
-        sentimen = "happy"
-    else:
-        sentimen = "not happy"
-    st.write("Hasil Analisis : " + sentimen)
+
+hasil_analisis = model.predict(input_review)
+st.write("Hasil Analisis : " + hasil_analisis)

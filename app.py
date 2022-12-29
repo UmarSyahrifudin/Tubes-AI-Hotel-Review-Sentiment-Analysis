@@ -1,23 +1,19 @@
 import numpy as np
-# from flask_ngrok import run_with_ngrok
-from flask import Flask, render_template , request 
 import pickle
 
-model = pickle.load(open("./model_pkl", 'rb'))
+with open("model_pkl", 'rb') as file:
+    model = pickle.load(file)
 
-app = Flask(__name__, template_folder='./templates')
-# run_with_ngrok(app)
 
-@app.route('/')
-def home():
-    return render_template('index.html')
+input_review = st.text_area(label="Masukkan Review (Dalam bahasa Inggris):",
+                            placeholder="Review")
+analisis_button = st.button(label="Analyze")
 
-@app.route('/getprediction',methods=['POST'])
-def getprediction():    
-      input = [str(x) for x in request.form.values()]
-      prediction = model.predict(input)[0]
 
-      return render_template('index.html', output=prediction, review=input)
-
-if __name__ == "__main__":
-    app.run()
+if analisis_button:
+    hasil_analisis = model.predict(input_review)
+    if hasil_analisis == "Is_Response":
+        sentimen = "happy"
+    else:
+        sentimen = "not happy"
+    st.write("Hasil Analisis : " + sentimen)

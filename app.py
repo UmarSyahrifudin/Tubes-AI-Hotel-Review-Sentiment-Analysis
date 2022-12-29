@@ -12,5 +12,5 @@ analisis_button = st.button(label="Analyze")
 
 
 
-hasil_analisis = predictions(input_review)
+hasil_analisis = model.predict (input_review)
 st.write("Hasil Analisis : " + hasil_analisis)

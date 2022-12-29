@@ -1,5 +1,4 @@
 import numpy as np
-from flask_ngrok import run_with_ngrok
 from flask import Flask, render_template , request 
 import pickle
 
@@ -8,7 +7,6 @@ import pickle
 model = pickle.load(open("./model_pkl", 'rb'))
 
 app = Flask(__name__, template_folder='./templates')
-run_with_ngrok(app)
 
 @app.route('/')
 def home():
@@ -22,4 +20,4 @@ def getprediction():
       return render_template('index.html', output=prediction, review=input)
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)
